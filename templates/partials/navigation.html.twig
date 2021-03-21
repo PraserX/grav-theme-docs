@@ -1,0 +1,57 @@
+<div class="container-fluid navigation-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav id="nav-main">
+                    <ul class="left">
+                        {% for navitem in config.theme["navigation-groups"] %}
+                            {% if navitem.linkable %}
+                                {% if navitem.remotelink == true %}
+                                    <li class="nav-item"><a class="nav-xlink" href="{{ navitem.link }}">{{ navitem.name }}</a></li>
+                                {% else %}
+                                    <li class="nav-item"><a class="nav-xlink" href="{{ base_url }}{{ navitem.link }}">{{ navitem.name }}</a></li>
+                                {% endif %}
+                            {% else %}
+                                <li class="nav-item"><span class="nav-xlink" onclick="ShowSubmenu('#submenu{{ loop.index }}')">{{ navitem.name }}</span></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% if grav.user and config.theme["navigation-logout-button-link"] %}
+                    <ul class="right">
+                        <li class="nav-item"><a class="nav-xlink" href="{{ config.theme["navigation-logout-button-link"] }}"><i class="fas fa-sign-out-alt"></i>&nbsp;{{ config.theme["navigation-logout-button-title"] }}</a></li>
+                    </ul>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    {% for navitem in config.theme["navigation-groups"] %}
+    <div id="submenu{{ loop.index }}" class="nav-submenu">
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h4 class="section-title">{{ navitem.name }}</h4>
+                    <p>{{ navitem.description }}</p>
+                </div>
+                {% for sectionID, sectionName in navitem.sections %}
+                <div class="col-3">
+                    <h4>{{ sectionName }}</h4>
+                    <ul>
+                        {% for item in config.theme["navigation-links"] %}
+                        {% if item.groupID == navitem.id and item.sectionID == sectionID %}
+                            {% if item.remotelink == true %}
+                                <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+                            {% else %}
+                                <li><a href="{{ base_url }}{{ item.link }}">{{ item.name }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

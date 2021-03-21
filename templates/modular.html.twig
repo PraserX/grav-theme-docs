@@ -1,0 +1,16 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+<div class="default container-fluid">
+  <div class="row no-gutters">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-7 offset-xl-1 pl-3 pr-3">
+        {{ page.content }}
+        {% for module in page.collection() %}
+        {{ module.content }}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+<a href="#top-mark" class="back-to-top d-print-none">
+  <i class="fas fa-angle-double-up"></i>
+</a>
+{% endblock %}

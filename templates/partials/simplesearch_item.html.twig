@@ -1,0 +1,10 @@
+<a href="{{ page.url }}" class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ page.title }}</h5>
+      <small>{{ page.date|date(config.system.pages.dateformat.short) }}</small>
+    </div>
+    <p class="mb-1">
+        {{ page.summary|raw|striptags|nl2br }}
+    </p>
+    <small>Updated on {{ page.modified|date(config.system.pages.dateformat.short) }}.</small>
+</a>

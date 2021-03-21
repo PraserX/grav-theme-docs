@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% set html_lang = grav.language.getActive ?: grav.config.site.default_lang %}
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="{{ html_lang }}"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="{{ html_lang }}"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="{{ html_lang }}"> <!--<![endif]-->
+    <head>
+    {% block head %}
+        <meta charset="utf-8" />
+        <title>{% if header.title %}{{ header.title }} | {% endif %}{{ site.title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <meta name="description" content="{{ config.site.metadata.description }}">
+        <meta name="keywords" content="{{ config.site.metadata.keywords }}">
+        <meta name="author" content="{{ config.site.author.name }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+
+        <link href="{{ url('theme://assets/bootstrap/4.6.0/bootstrap.min.css') }}" rel="stylesheet" >
+        <link href="{{ url('theme://assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+        <link href="{{ url('theme://assets/highlightjs/styles/default.css') }}" rel="stylesheet" >
+
+        {% block stylesheets %} 
+            {% do assets.addCss('theme://css/default.css') %}
+        {% endblock %}
+
+        <script src="{{ url('theme://assets/jquery/jquery-3.4.1.slim.min.js') }}"></script>
+        <script src="{{ url('theme://assets/popper/popper.min.js') }}"></script>
+        <script src="{{ url('theme://assets/bootstrap/4.6.0/bootstrap.min.js') }}"></script>
+        <script src="{{ url('theme://assets/highlightjs/highlight.pack.js') }}"></script>
+
+        {% block javascripts %}
+            {% do assets.addJs('jquery', 101) %}
+        {% endblock %}
+
+        {% block assets deferred %}
+            {{ assets.css()|raw }}
+            {{ assets.js()|raw }}
+        {% endblock %}
+
+    {% endblock head%}
+    </head>
+    <body class="{{ page.header.body_classes }}" id="top-mark">
+        {% block header %}
+            {% include 'partials/header.html.twig' %}
+        {% endblock %}
+
+        {% block sidebar %}
+            {% include 'partials/sidebar.html.twig' %}
+        {% endblock %}
+
+        <div class="content-sidebar-pad-wrapper">
+        {% block body %}
+            {% block content %}{% endblock %}
+        {% endblock %}
+        
+        {% block footer %}
+            {% include 'partials/footer.html.twig' %}
+        {% endblock %}
+        </div>
+
+        <script>
+            function ShowSubmenu(menu) {
+                $(".nav-submenu").hide();
+                $(menu).show();
+                $(menu).addClass("active");
+            }
+
+            $(document).bind('click', function(e) {
+                if($(e.target).closest('#nav-main').length == 0) {
+                    var opened = $('.nav-submenu').hasClass('active');
+                    if ( opened === true ) {
+                        $(".nav-submenu").hide();
+                    }
+                }
+            });
+        </script>
+
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        {% block bottom %}
+            {{ assets.js('bottom')|raw }}
+        {% endblock %}
+    </body>
+</html>

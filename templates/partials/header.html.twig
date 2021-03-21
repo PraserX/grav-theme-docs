@@ -1,0 +1,36 @@
+<header id="home" class="sticky-top shadow pt-3 pb-3 pl-2 pr-2 d-print-none">
+  <div class="pagetitle-wrapper d-flex">
+    <div class="p-2 flex-grow-1">
+      <a href="{{ home_url }}">
+        <div class="logo">
+          <img src="{{ theme_url }}/images/logo.png">
+        </div>
+        <div class="text d-none d-md-block">
+          <span class="title">{{ config.theme["header-title"] }}</span><br>
+          <span class="subtitle d-none d-lg-block">{{ config.theme["header-subtitle"] }}</span>
+        </div>
+      </a>
+    </div>
+    <div class="p-2" style="margin: auto 0px;">
+      <div class="form-inline">
+        {% if config.plugins.simplesearch.enabled %}
+            <div class="sidebar-content d-inline-block mr-4">
+                {% include 'partials/simplesearch_searchbox.html.twig' %}
+            </div>
+        {% endif %}
+        <div class="d-none d-xl-inline">
+          {% for title, link in config.theme["header-links"] %}
+              <a href="{{ link }}" class="mr-4">{{ title }}</a>
+          {% endfor %}
+        </div>
+        <a href="{{ config.theme['header-logout-link'] }}" class="btn btn-outline-light btn-sm">
+          <i class="fas fa-sign-out-alt"></i> Log out
+        </a>
+      </div>
+    </div>
+  </div>
+  {# <hr>
+  {% block navigation %}
+  {% include 'partials/navigation.html.twig' %}
+  {% endblock %} #}
+</header>

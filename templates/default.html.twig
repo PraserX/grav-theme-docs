@@ -1,0 +1,40 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+<div class="default container-fluid">
+  <div class="row no-gutters">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-7 offset-xl-1 pl-3 pr-3">
+      <section class="page shadow">
+        <div class="row no-gutters d-print-none">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+          {% block breadcrumbs %}
+            {% include 'partials/breadcrumbs.html.twig' %}
+          {% endblock %}
+          </div>
+          <div class="col-12 text-left col-sm-12 text-sm-left col-md-12 text-md-left col-lg-4 text-lg-right">
+            <div class="git-link">
+              <a href="{{ config.theme['git-base-url'] }}/{{ page.filePathClean }}"><i class="fas fa-code-branch"></i> Editovat stránku</a>
+            </div>
+          </div>
+        </div>
+        <h1 class="common">{{ page.header.title }}</h1>
+        <hr class="common">
+        {{ page.content }}
+      </section>
+    </div>
+    <div class="d-sm-none d-md-none d-lg-block d-xl-block col-lg-3 col-xl-3 pr-3 d-print-none">
+      {% if config.get('plugins.page-toc.active') or attribute(page.header, 'page-toc').active %}
+      <div id="table-of-contents">
+          {% set table_of_contents = toc(page.content) %}
+          {% if table_of_contents is not empty %}
+          <h4>Table of Contents</h4>
+          {{ table_of_contents|raw }}
+          {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<a href="#top-mark" class="back-to-top d-print-none">
+  <i class="fas fa-angle-double-up"></i>
+</a>
+{% endblock %}

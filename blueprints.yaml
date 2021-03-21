@@ -1,0 +1,70 @@
+name: Docs
+version: 1.0.0
+description: "Documentation theme for everyone."
+icon: group
+author:
+  name: Praser
+  email: praserx@gmail.com
+  url: https://github.com/praserx
+keywords: docs, theme, documentation
+license: MIT
+dependencies:
+  - { name: grav, version: ">=1.7.0" }
+
+form:
+  validation: strict
+
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        header:
+          type: tab
+          title: Header
+          fields:
+            header-title:
+              type: text
+              label: Header title
+              help: Main header title
+              size: medium
+              default: "My Special Documentation"
+
+            header-subtitle:
+              type: text
+              label: Header subtitle
+              help: Main header subtitle
+              size: medium
+              default: "My Special Company"
+
+            header-logout-link:
+              type: text
+              label: "Header logout link"
+              default: "#"
+
+            header-links:
+              type: array
+              label: Links
+              help: Add footer links.
+
+        footer:
+          type: tab
+          title: Footer
+          fields:
+            footer-copyright:
+              type: text
+              label: Copyright
+              help: Page copyright
+              size: medium
+              default: "My Special Company. All rights reserved."
+
+        git:
+          type: tab
+          title: Git
+          fields:
+            git-base-url:
+              type: text
+              label: Git URL
+              help: Base URL of git server and repository
+              size: medium
+              default: ""

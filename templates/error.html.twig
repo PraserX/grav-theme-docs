@@ -1,0 +1,17 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+<div class="default container-fluid">
+  <div class="row no-gutters">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-6 offset-xl-2 pl-3 pr-3">
+      <section class="page shadow">
+        {% block breadcrumbs %}
+          {% include 'partials/breadcrumbs.html.twig' %}
+        {% endblock %}
+        <h1 class="common">Error {{ page.header.http_response_code }}</h1>
+        <hr class="common">
+        {{ page.content }}
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

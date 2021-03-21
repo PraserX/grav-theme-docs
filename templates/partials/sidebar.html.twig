@@ -1,0 +1,41 @@
+{% macro renderMenuItem(visiblePage, sub) %}
+    {% if visiblePage.children.visible is empty and visiblePage.routable %}
+    <ul class="list-unstyled">
+        <li><a class="item custom" href="{{ visiblePage.url }}">
+            {% if visiblePage.home %}<i class="fas fa-home pr-1"></i>{% endif %}
+            {{ visiblePage.title }}
+        </a></li>
+    </ul>
+    {% else %}
+    <div>
+        {% if not sub %}
+        <span class="text-category">{{ visiblePage.title }}</span>
+        {% endif %}
+        <ul class="list-unstyled">
+            {% for gps_item in visiblePage.children.visible %}
+            <li><a class="item" href="{{ gps_item.url }}">{{ gps_item.title }}</a></li>
+            {% if gps_item.children.visible is not empty %}
+            {% if gps_item.active or gps_item.activeChild %}
+            {{ _self.renderMenuItem(gps_item, true) }}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endmacro %}
+
+<nav class="sidebar overflow-auto shadow d-print-none">
+    {% for visiblePage in page.find("/", true).parent.children.visible %}
+        {% if visiblePage.header.visibility_requires_access|default(false) %}
+            {% if config.plugins.login.enabled and grav.user.username %}
+                {{ _self.renderMenuItem(visiblePage) }}
+            {% endif %}
+        {% else %}
+            {{ _self.renderMenuItem(visiblePage, false) }}
+        {% endif %}
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+    {% endfor %}
+</nav>
