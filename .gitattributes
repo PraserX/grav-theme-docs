@@ -5,3 +5,4 @@ screenshot.jpg filter=lfs diff=lfs merge=lfs -text
 thumbnail.jpg filter=lfs diff=lfs merge=lfs -text
 *.jpeg filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text

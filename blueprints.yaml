@@ -1,5 +1,5 @@
 name: Docs
-version: 1.0.0
+version: 1.0.1
 description: "Documentation theme for everyone."
 icon: group
 author:
@@ -36,6 +36,26 @@ form:
               help: Main header subtitle
               size: medium
               default: "My Special Company"
+
+            custom-logo:
+              type: file
+              label: Custom Logo
+              size: large
+              destination: "theme://images"
+              multiple: false
+              markdown: true
+              accept:
+                - image/*
+
+            custom-favicon:
+              type: file
+              label: Custom Favicon
+              size: large
+              destination: "theme://images"
+              multiple: false
+              markdown: true
+              accept:
+                - image/*
 
             header-logout-link:
               type: text
