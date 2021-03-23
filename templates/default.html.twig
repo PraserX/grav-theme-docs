@@ -12,7 +12,8 @@
           </div>
           <div class="col-12 text-left col-sm-12 text-sm-left col-md-12 text-md-left col-lg-4 text-lg-right">
             <div class="git-link">
-              <a href="{{ config.theme['git-base-url'] }}/{{ page.filePathClean }}"><i class="fas fa-code-branch"></i> Editovat stránku</a>
+              {% set cutoff = config.theme['git-cut-off-length'] %}
+              <a href="{{ config.theme['git-base-url'] }}/{{ page.filePathClean[cutoff:] }}"><i class="fas fa-code-branch"></i> Editovat stránku</a>
             </div>
           </div>
         </div>

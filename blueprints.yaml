@@ -1,7 +1,7 @@
 name: Docs
-version: 1.0.1
+version: 1.0.2
 description: "Documentation theme for everyone."
-icon: group
+icon: book
 author:
   name: Praser
   email: praserx@gmail.com
@@ -88,3 +88,10 @@ form:
               help: Base URL of git server and repository
               size: medium
               default: ""
+
+            git-cut-off-length:
+              type: text
+              label: Page clean path cut off length
+              help: "Part of clean file path which will be removed."
+              size: medium
+              default: "5"

@@ -113,7 +113,8 @@ nav.sidebar {
     top: 0;
     left: 0;
     z-index: 1010;
-    padding-top: 125px;
+    margin-top: 72px;
+    padding-top: 20px;
     box-sizing: border-box;
 }
 
