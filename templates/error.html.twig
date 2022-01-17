@@ -9,7 +9,7 @@
         {% endblock %}
         <h1 class="common">Error {{ page.header.http_response_code }}</h1>
         <hr class="common">
-        {{ page.content }}
+        {{ page.content|raw }}
       </section>
     </div>
   </div>

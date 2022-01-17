@@ -3,9 +3,9 @@
 <div class="default container-fluid">
   <div class="row no-gutters">
     <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-7 offset-xl-1 pl-3 pr-3">
-        {{ page.content }}
+        {{ page.content|raw }}
         {% for module in page.collection() %}
-        {{ module.content }}
+        {{ module.content|raw }}
         {% endfor %}
     </div>
   </div>
